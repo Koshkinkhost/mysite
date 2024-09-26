@@ -3,121 +3,184 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Responsive Slick Slider Example</title>
-    
-    <!-- Подключаем стили Slick -->
-    <link rel="stylesheet" type="text/css" href="https://cdnjs.cloudflare.com/ajax/libs/slick-carousel/1.8.1/slick.min.css"/>
-    <link rel="stylesheet" type="text/css" href="https://cdnjs.cloudflare.com/ajax/libs/slick-carousel/1.8.1/slick-theme.min.css"/>
-
+    <title>Heart Drawing Animation with Shadow on Path</title>
     <style>
-        /* Основной контейнер слайдера */
-        .slider {
-            width: 70%;
-            margin:200px 100px 100px 100px;
+        body {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            height: 100vh;
+            font-family: 'Courier New', Courier, monospace;
+            background-color: #010000;
+            margin: 0;
+            flex-direction: column;
+            text-align: center; /* Центрируем текст для мобильных */
         }
 
-        /* Стили для слайдов */
-        .slick-slide {
-            text-align: center;
-            color: #fff;
-            background: #3498db;
-            padding: 40px 0;
+        svg {
+            width: 50vw; /* Используем vw для адаптации ширины */
+            height: auto; /* Автоматическая высота для сохранения пропорций */
+            cursor: pointer;
+        }
+
+        path {
+            fill: none;
+            stroke: rgb(201, 39, 142);
+            stroke-width: 1;
+            stroke-dasharray: 1000;
+            stroke-dashoffset: 1000;
+            transition: stroke-dashoffset 3s ease-in-out;
+            filter: drop-shadow(1px 1px 1px rgba(253, 3, 140)); /* Тень только к контуру */
+        }
+
+        .draw {
+            stroke-dashoffset: 0;
+        }
+
+        .button {
+            padding: 10px 20px;
+            margin-top: 20px;
+            background-color: #4CAF50;
+            color: white;
+            border: none;
+            border-radius: 5px;
+            cursor: pointer;
+            font-size: 1rem;
+            transition: background-color 0.3s;
+        }
+
+        .button:hover {
+            background-color: #45a049;
+        }
+
+        .timer {
+            color: white;
             font-size: 24px;
+            font-weight: bold;
+            margin-top: 20px;
         }
 
-        /* Стили для стрелок навигации */
-        .slick-next {
-            font-size: 0;
-            border: none;
-            background: none;
-            color: #3498db;
-            margin-left: -18px;
-        } .slick-prev{
-            font-size: 0;
-            border: none;
-            background: none;
-            color: #3498db;
-            margin-left: -18px;
-        }
-
-         .slick-next:before {
-            font-size: 40px;
-            color: #3498db;
+        .for_heart {
+            background-color: rgba(250, 10, 194, 0.29);
+            text-align: center;
+            border-radius: 10px;
+            opacity: 1;
+            transition: background-color 1s ease-in-out;
+            padding: 20px; /* Добавляем отступы */
+            margin: 10px; /* Добавляем отступы */
+            width: auto; /* Ширина блока 90% от ширины экрана */
+            max-width: 500px; /* Максимальная ширина блока */
         }
         
-        .slick-prev:before{
-            font-size: 40px;
-            color: #3498db;
+        .for_heart p{
+            color:white;
         }
 
-        /* Стили для точек пагинации */
-        .slick-dots li button:before {
-            color: #3498db;
+        .for_heart_hide {
+            background-color: rgba(1, 0, 0, 0);
+        }
+        header{
+            width: 100%;
+            height:40px;
+            padding:0;
+            background-color: #9473f7;
         }
 
-        /* Адаптивные стили для планшетов */
-        @media (max-width: 768px) {
-            .slider {
-                width: 90%;
+        @media (max-width: 600px) {
+            .timer {
+                font-size: 20px; /* Уменьшаем размер шрифта для таймера на маленьких экранах */
+            }
+            .meet {
+                color: rgb(214, 94, 140);
+                font-family: 'Courier New', Courier, monospace;
+                font-size: 30px; /* Уменьшаем размер шрифта для мобильных устройств */
+                text-shadow: 2px 2px 3px rgba(109, 4, 237, 0.929);
             }
 
-            .slick-slide {
-                padding: 30px 0;
-                font-size: 20px;
+            .button {
+                padding: 8px 16px; /* Уменьшаем отступы для кнопки */
+                font-size: 0.9rem; /* Уменьшаем размер шрифта для кнопки */
             }
 
-            .slick-prev:before, .slick-next:before {
-                font-size: 30px;
-            }
-        }
-
-        /* Адаптивные стили для мобильных устройств */
-        @media (max-width: 480px) {
-            .slider {
-                width: 95%;
+            header {
+                width: 100%;
+                height: auto; /* Автоматическая высота для адаптации */
+                background-color: #9473f7;
+                padding: 10px 0; /* Добавляем отступы */
+                font-size: 20px; /* Уменьшаем размер шрифта заголовка */
+                color: white; /* Цвет текста заголовка */
             }
 
-            .slick-slide {
-                padding: 20px 0;
-                font-size: 18px;
+            #heart-svg {
+                width: 70vw; /* Увеличиваем ширину SVG на маленьких экранах */
             }
 
-            .slick-prev:before, .slick-next:before {
-                font-size: 25px;
+            .for_heart {
+                padding: 15px; /* Уменьшаем отступы внутри блока для мобильных */
+            }
+
+            #timerText {
+                font-size: 30px; /* Уменьшаем размер шрифта для таймера на мобильных */
             }
         }
     </style>
 </head>
 <body>
-    <!-- Контейнер слайдера -->
-    <div class="slider">
-        <div>Slide 1</div>
-        <div>Slide 2</div>
-        <div>Slide 3</div>
-        <div>Slide 4</div>
-        <div>Slide 5</div>
-    </div>
+    <header>
+Всем привет
+    </header>
+<div id="container" class="for_heart">
+    <p style="font-family: 'Courier New', Courier, monospace;" id="hiText">Нажми меня, Алёнка!</p>
+    <svg id="heart-svg" viewBox="0 0 28 28">
+        <path d="M12 21.35l-1.45-1.32C5.4 15.36 2 12.28 2 8.5 2 5.42 4.42 3 7.5 3c1.74 0 3.41.81 4.5 2.09C13.09 3.81 14.76 3 16.5 3 19.58 3 22 5.42 22 8.5c0 3.78-3.4 6.86-8.55 11.54L12 21.35z"/>
+    </svg>
+</div>
 
-    <!-- Подключаем jQuery -->
-    <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
-    
-    <!-- Подключаем Slick Slider -->
-    <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/slick-carousel/1.8.1/slick.min.js"></script>
 
-    <script>
-        $(document).ready(function(){
-            $('.slider').slick({
-                slidesToShow: 1,
-                slidesToScroll: 1,
-                autoplay: true,
-                autoplaySpeed: 2000,
-                dots: true,
-                arrows: true,
-                infinite: true,
-                prevArrow: '<button type="button" class="slick-prev">&#10094;</button>',
-                nextArrow: '<button type="button" class="slick-next">&#10095;</button>'
-            });
-        });
-    </script>
+<h1></h1>
+<div class="timer" id="countdown">
+    <p>До нашей встречи осталось</p>
+    <p id="timerText" style="color:pink;font-size: 40px; text-shadow: 2px 2px 3px rgba(109, 4, 237, 0.929); /"></p>
+</div>
+
+<script>
+    const heartPath = document.querySelector('#heart-svg path');
+    const container = document.getElementById('container');
+    const countdown = document.getElementById('countdown');
+    const clickText = document.getElementById('hiText'); // Новый идентификатор для текста
+    const timer = document.getElementById('timerText'); // Новый идентификатор для текста таймера
+    const nextMeetDate = new Date("2024-12-20T00:00:00").getTime();
+
+    document.getElementById('heart-svg').addEventListener('click', function() {
+        heartPath.classList.add('draw');
+        container.classList.toggle("for_heart_hide");
+        clickText.style.display='none'; // Скрываем текст при нажатии
+        timer.style.display = 'block'; // Показываем таймер
+        console.log("нажато")
+        updateTimer(); // Вызываем функцию обновления таймера сразу после нажатия
+        setInterval(updateTimer, 1000); // Обновляем таймер каждую секунду
+    });
+
+    function updateTimer() {
+        const now = new Date().getTime();
+        const distance = nextMeetDate - now;
+
+        // Вычисляем дни, часы, минуты, секунды
+        const days = Math.floor(distance / (1000 * 60 * 60 * 24));
+        const hours = Math.floor((distance % (1000 * 60 * 60 * 24)) / (1000 * 60 * 60));
+        const minutes = Math.floor((distance % (1000 * 60 * 60)) / (1000 * 60));
+        const seconds = Math.floor((distance % (1000 * 60)) / 1000);
+
+        // Обновляем текст таймера
+        timerText.innerHTML = `${days}d ${hours}h ${minutes}m ${seconds}s`;
+
+        // Если время вышло
+        if (distance <= 0) {
+            countdown.innerHTML = "Время пришло!";
+            clearInterval(); // Останавливаем таймер
+        }
+    }
+</script>
+
 </body>
 </html>
