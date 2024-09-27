@@ -5,7 +5,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Heart Drawing Animation with Shadow on Path</title>
     <style>
-       body {
+        body {
             display: flex;
             justify-content: center;
             align-items: center;
@@ -17,9 +17,26 @@
             text-align: center;
         }
 
+        header {
+            position: absolute;
+            top: 0;
+            width: 100%;
+            background-color: #6200ea; /* Красивый фиолетовый */
+            padding: 10px;
+            box-shadow: 0px 4px 8px rgba(0, 0, 0, 0.5); /* Тень для глубины */
+            text-align: center;
+        }
+
+        header h1 {
+            color: white;
+            margin: 0;
+            font-size: 24px;
+            text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.7); /* Тень текста для эффекта */
+        }
+
         svg {
-            width: 30vw; /* Уменьшил размер SVG для более гармоничного отображения */
-            height: auto; /* Автоматическая высота для сохранения пропорций */
+            width: 30vw; 
+            height: auto;
             cursor: pointer;
         }
 
@@ -30,7 +47,7 @@
             stroke-dasharray: 1000;
             stroke-dashoffset: 1000;
             transition: stroke-dashoffset 3s ease-in-out;
-            filter: drop-shadow(1px 1px 1px rgba(253, 3, 140)); /* Тень только к контуру */
+            filter: drop-shadow(1px 1px 1px rgba(253, 3, 140));
         }
 
         .draw {
@@ -69,122 +86,136 @@
             margin: 10px;
             width: auto;
             max-width: 500px;
-            display: flex; /* Flexbox для центровки */
+            display: flex;
             justify-content: center;
             align-items: center;
             flex-direction: column;
         }
 
-        .for_heart p {
-            color: white;
-            font-family: 'Courier New', Courier, monospace;
-            align-self: center;
-            width: 100%;
-        }
-
         .for_heart_hide {
+            border-radius: 10px;
+            opacity: 1;
+            transition: background-color 1s ease-in-out;
+            padding: 20px;
+            margin: 10px;
+            width: auto;
+            max-width: 500px;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            flex-direction: column;
+        
             background-color: rgba(1, 0, 0, 0);
         }
-        .head{
-            height: 20%;
-            width: 100%;
+
+        .for_heart_hide path {
+            filter: none; /* Убираем тень у контура после анимации */
         }
-        
 
         @media (max-width: 600px) {
             .timer {
-                font-size: 20px; /* Уменьшаем размер шрифта для таймера на маленьких экранах */
+                font-size: 20px;
             }
             .meet {
                 color: rgb(214, 94, 140);
                 font-family: 'Courier New', Courier, monospace;
-                font-size: 30px; /* Уменьшаем размер шрифта для мобильных устройств */
+                font-size: 30px;
                 text-shadow: 2px 2px 3px rgba(109, 4, 237, 0.929);
             }
 
             .button {
-                padding: 8px 16px; /* Уменьшаем отступы для кнопки */
-                font-size: 0.9rem; /* Уменьшаем размер шрифта для кнопки */
+                padding: 8px 16px;
+                font-size: 0.9rem;
             }
-            path {
-            fill: none;
-            stroke: rgb(201, 39, 142);
-            stroke-width: 1;
-            stroke-dasharray: 1000;
-            stroke-dashoffset: 1000;
-            transition: stroke-dashoffset 3s ease-in-out;
-            filter: drop-shadow(1px 1px 1px rgba(253, 3, 140)); /* Тень только к контуру */
-        }
-          
 
-            #heart-svg {
-                width: 70vw; /* Увеличиваем ширину SVG на маленьких экранах */
+            svg {
+                width: 70vw;
             }
 
             .for_heart {
-                padding: 15px; /* Уменьшаем отступы внутри блока для мобильных */
+                padding: 15px;
             }
 
             #timerText {
-                font-size: 30px; /* Уменьшаем размер шрифта для таймера на мобильных */
+                font-size: 30px;
+            }
+        }
+
+        @media (min-width: 1024px) {
+            body {
+                height: 100vh;
+            }
+
+            svg {
+                width: 15vw;
+            }
+
+            .timer {
+                font-size: 32px;
+            }
+
+            .button {
+                font-size: 1.2rem;
+            }
+
+            .for_heart {
+                max-width: 600px;
+            }
+
+            #timerText {
+                font-size: 40px;
             }
         }
     </style>
 </head>
 <body>
-  <div class="head">
-
-  </div>
+    <header>
+        <h1>Скоро наша встреча, Алёна!</h1>
+    </header>
 <div id="container" class="for_heart">
-    <p  id="hiText">Нажми на  меня, Алёнка!</p>
+    <p id="hiText">Нажми на  меня, Алёнка!</p>
     <svg id="heart-svg" viewBox="0 0 28 28">
         <path d="M12 21.35l-1.45-1.32C5.4 15.36 2 12.28 2 8.5 2 5.42 4.42 3 7.5 3c1.74 0 3.41.81 4.5 2.09C13.09 3.81 14.76 3 16.5 3 19.58 3 22 5.42 22 8.5c0 3.78-3.4 6.86-8.55 11.54L12 21.35z"/>
     </svg>
 </div>
 
-
 <h1></h1>
 <div class="timer" id="countdown">
-    <p>До нашей встречи осталось всего</p>
-    <p id="timerText" style="color:pink;font-size: 40px; text-shadow: 2px 2px 3px rgba(109, 4, 237, 0.929); /"></p>
+    <p>До нашей встречи осталось</p>
+    <p id="timerText" style="color:pink;font-size: 40px; text-shadow: 2px 2px 3px rgba(109, 4, 237, 0.929);"></p>
 </div>
-<div>а </div>
 
 <script>
     const heartPath = document.querySelector('#heart-svg path');
     const container = document.getElementById('container');
     const countdown = document.getElementById('countdown');
-    const clickText = document.getElementById('hiText'); // Новый идентификатор для текста
-    const timer = document.getElementById('timerText'); // Новый идентификатор для текста таймера
+    const clickText = document.getElementById('hiText');
+    const timer = document.getElementById('timerText');
     const nextMeetDate = new Date("2024-12-20T00:00:00").getTime();
 
     document.getElementById('heart-svg').addEventListener('click', function() {
         heartPath.classList.add('draw');
         container.classList.toggle("for_heart_hide");
-        clickText.style.display='none'; // Скрываем текст при нажатии
-        timer.style.display = 'block'; // Показываем таймер
-        console.log("нажато")
-        updateTimer(); // Вызываем функцию обновления таймера сразу после нажатия
-        setInterval(updateTimer, 1000); // Обновляем таймер каждую секунду
+        clickText.style.display = 'none';
+        timer.style.display = 'block';
+        updateTimer();
+        setInterval(updateTimer, 1000);
     });
 
     function updateTimer() {
         const now = new Date().getTime();
         const distance = nextMeetDate - now;
 
-        // Вычисляем дни, часы, минуты, секунды
         const days = Math.floor(distance / (1000 * 60 * 60 * 24));
         const hours = Math.floor((distance % (1000 * 60 * 60 * 24)) / (1000 * 60 * 60));
         const minutes = Math.floor((distance % (1000 * 60 * 60)) / (1000 * 60));
         const seconds = Math.floor((distance % (1000 * 60)) / 1000);
 
-        // Обновляем текст таймера
-        timerText.innerHTML = `${days}d ${hours}h ${minutes}m ${seconds}s`;
+        timer.innerHTML = `${days}d ${hours}h ${minutes}m ${seconds}s`;
 
-        // Если время вышло
         if (distance <= 0) {
             countdown.innerHTML = "Время пришло!";
-            clearInterval(); // Останавливаем таймер
+            clearInterval();
         }
     }
 </script>
