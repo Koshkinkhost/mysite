@@ -5,7 +5,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Heart Drawing Animation with Shadow on Path</title>
     <style>
-        body {
+       body {
             display: flex;
             justify-content: center;
             align-items: center;
@@ -14,11 +14,11 @@
             background-color: #010000;
             margin: 0;
             flex-direction: column;
-            text-align: center; /* Центрируем текст для мобильных */
+            text-align: center;
         }
 
         svg {
-            width: 50vw; /* Используем vw для адаптации ширины */
+            width: 30vw; /* Уменьшил размер SVG для более гармоничного отображения */
             height: auto; /* Автоматическая высота для сохранения пропорций */
             cursor: pointer;
         }
@@ -62,24 +62,32 @@
 
         .for_heart {
             background-color: rgba(250, 10, 194, 0.29);
-            text-align: center;
             border-radius: 10px;
             opacity: 1;
             transition: background-color 1s ease-in-out;
-            padding: 20px; /* Добавляем отступы */
-            margin: 10px; /* Добавляем отступы */
-            width: auto; /* Ширина блока 90% от ширины экрана */
-            max-width: 500px; /* Максимальная ширина блока */
+            padding: 20px;
+            margin: 10px;
+            width: auto;
+            max-width: 500px;
+            display: flex; /* Flexbox для центровки */
+            justify-content: center;
+            align-items: center;
+            flex-direction: column;
         }
-        
-        .for_heart p{
-            color:white;
+
+        .for_heart p {
+            color: white;
+            font-family: 'Courier New', Courier, monospace;
+            align-self: center;
+            width: 100%;
         }
 
         .for_heart_hide {
             background-color: rgba(1, 0, 0, 0);
         }
-      
+        .heart{
+            margin-left: 70px;
+        }
 
         @media (max-width: 600px) {
             .timer {
@@ -116,8 +124,8 @@
 <body>
   
 <div id="container" class="for_heart">
-    <p style="font-family: 'Courier New', Courier, monospace;margin-left: 10px;" id="hiText">Нажми меня, Алёнка!</p>
-    <svg id="heart-svg" viewBox="0 0 28 28">
+    <p  id="hiText">Нажми на  меня, Алёнка!</p>
+    <svg class="heart" id="heart-svg" viewBox="0 0 28 28">
         <path d="M12 21.35l-1.45-1.32C5.4 15.36 2 12.28 2 8.5 2 5.42 4.42 3 7.5 3c1.74 0 3.41.81 4.5 2.09C13.09 3.81 14.76 3 16.5 3 19.58 3 22 5.42 22 8.5c0 3.78-3.4 6.86-8.55 11.54L12 21.35z"/>
     </svg>
 </div>
@@ -125,7 +133,7 @@
 
 <h1></h1>
 <div class="timer" id="countdown">
-    <p>До нашей встречи осталось</p>
+    <p>До нашей встречи осталось всего</p>
     <p id="timerText" style="color:pink;font-size: 40px; text-shadow: 2px 2px 3px rgba(109, 4, 237, 0.929); /"></p>
 </div>
 
