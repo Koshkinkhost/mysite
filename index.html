@@ -8,21 +8,41 @@
     <style>
         .body_container {
             display: flex;
-            width: 100vh;
+            height: 100vh;
             justify-content: center;
             flex-direction: column;
-            align-items:center;
+            align-items: center;
             background-color: black;
+            background: linear-gradient(45deg, #000000, #1a0033, #330066, #660099, #9900cc, #cc00ff);
+            background-size: 600% 600%;
+            animation: gradientAnimation 10s ease infinite;
             width: 100%;
             font-family: 'Courier New', Courier, monospace;
         }
 
+        @keyframes gradientAnimation {
+            0% {
+                background-position: 0% 50%;
+            }
+            50% {
+                background-position: 100% 50%;
+            }
+            100% {
+                background-position: 0% 50%;
+            }
+        }
+
         svg {
             width: 30vw;
-            /* Уменьшил размер SVG для более гармоничного отображения */
             height: auto;
-            /* Автоматическая высота для сохранения пропорций */
             cursor: pointer;
+            filter: drop-shadow(0px 0px 15px rgba(253, 3, 140, 0.7));
+            transition: transform 0.5s, filter 0.5s;
+        }
+
+        svg:hover {
+            transform: scale(1.1);
+            filter: drop-shadow(0px 0px 25px rgba(253, 3, 140, 1));
         }
 
         path {
@@ -33,7 +53,6 @@
             stroke-dashoffset: 1000;
             transition: stroke-dashoffset 3s ease-in-out;
             filter: drop-shadow(1px 1px 1px rgba(253, 3, 140));
-            /* Тень только к контуру */
         }
 
         .draw {
@@ -65,16 +84,13 @@
         }
 
         .for_heart {
-            
             border-radius: 10px;
             opacity: 1;
             transition: background-color 1s ease-in-out;
             padding: 20px;
             margin: 10px;
             width: auto;
-           
             display: flex;
-            /* Flexbox для центровки */
             justify-content: center;
             align-items: center;
             flex-direction: column;
@@ -102,6 +118,32 @@
             font-size: 24px;
             font-family: 'Courier New', Courier, monospace;
             text-shadow: 2px 2px 3px rgba(0, 0, 0, 0.5);
+            animation: pulse 2s infinite;
+        }
+
+        @keyframes pulse {
+            0% {
+                text-shadow: 0 0 5px rgba(109, 4, 237, 0.5);
+            }
+            50% {
+                text-shadow: 0 0 20px rgba(109, 4, 237, 1);
+            }
+            100% {
+                text-shadow: 0 0 5px rgba(109, 4, 237, 0.5);
+            }
+        }
+
+        .common {
+            text-align: center;
+            font-size: 24px;
+            color: rgb(255, 255, 255);
+            width: 100%;
+            background-color: rgb(207, 190, 243);
+            transition: background-color 0.3s;
+        }
+
+        .common:hover {
+            background-color: rgb(178, 149, 223);
         }
 
         @media (max-width: 600px) {
@@ -141,7 +183,6 @@
 
             svg {
                 width: 15vw;
-                /* Сделал SVG поменьше на больших экранах */
             }
 
             .timer {
@@ -154,7 +195,6 @@
 
             .for_heart {
                 max-width: 600px;
-                /* Максимальная ширина для блока на больших экранах */
             }
 
             #timerText {
@@ -166,11 +206,9 @@
 
 <body>
     <header>
-            2 месяца вместе
+        2 месяца вместе
     </header>
     <div class="body_container">
-
-
         <div id="container" class="for_heart">
             <p id="hiText">Нажми на меня, Алёнка!</p>
             <svg id="heart-svg" viewBox="0 0 28 28">
@@ -185,7 +223,10 @@
             <p id="timerText" style="color:pink;font-size: 40px; text-shadow: 2px 2px 3px rgba(109, 4, 237, 0.929);">
             </p>
         </div>
-        <div style="width: 100%;height:40px;font-size: 23px;text-align: center;color:white;">А пока....</div>
+        <p style="font-size: 24px;color:white;">А пока...</p>
+        <div class="common">
+            Вспомним то,что нас объединяет
+        </div>
     </div>
     <script>
         const heartPath = document.querySelector('#heart-svg path');
@@ -213,15 +254,13 @@
             const minutes = Math.floor((distance % (1000 * 60 * 60)) / (1000 * 60));
             const seconds = Math.floor((distance % (1000 * 60)) / 1000);
 
-            timer.innerHTML = `${days}d ${hours}h ${minutes}m ${seconds}s`;
+            timer.innerHTML = `${days}д ${hours}ч ${minutes}м ${seconds}с`;
 
-            if (distance <= 0) {
-                countdown.innerHTML = "Время пришло!";
-                clearInterval();
+            if (distance < 0) {
+                timer.innerHTML = "Время истекло!";
             }
         }
     </script>
-
 </body>
 
 </html>
