@@ -8,16 +8,14 @@
     <style>
         .body_container {
             display: flex;
-            height: 100vh;
-            justify-content: center;
             flex-direction: column;
+            justify-content: center;
             align-items: center;
-            background-color: black;
+            height: 100vh;
             background: linear-gradient(45deg, #000000, #1a0033, #330066, #660099, #9900cc, #cc00ff);
             background-size: 600% 600%;
             animation: gradientAnimation 10s ease infinite;
-            width: 100%;
-            font-family: 'Courier New', Courier, monospace;
+            padding: 20px;
         }
 
         @keyframes gradientAnimation {
@@ -32,8 +30,29 @@
             }
         }
 
+        header {
+            width: 100%;
+            background-color: rgba(109, 4, 237, 0.929);
+            padding: 10px;
+            text-align: center;
+            color: white;
+            font-size: 20px;
+            font-family: 'Courier New', Courier, monospace;
+            text-shadow: 2px 2px 3px rgba(0, 0, 0, 0.5);
+            box-shadow: 0px 2px 10px rgba(109, 4, 237, 0.7);
+        }
+
+        .for_heart {
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+            margin-top: 20px;
+        }
+
         svg {
-            width: 30vw;
+            width: 70vw;
+            max-width: 300px;
             height: auto;
             cursor: pointer;
             filter: drop-shadow(0px 0px 15px rgba(253, 3, 140, 0.7));
@@ -83,122 +102,18 @@
             text-align: center;
         }
 
-        .for_heart {
-            border-radius: 10px;
-            opacity: 1;
-            transition: background-color 1s ease-in-out;
-            padding: 20px;
-            margin: 10px;
-            width: auto;
-            display: flex;
-            justify-content: center;
-            align-items: center;
-            flex-direction: column;
-        }
-
-        .for_heart p {
-            color: white;
-            font-family: 'Courier New', Courier, monospace;
-            align-self: center;
-            width: 100%;
-            margin-left: 40px;
-        }
-
-        .for_heart_hide {
-            background-color: rgba(1, 0, 0, 0);
-        }
-
-        header {
-            width: 100%;
-            background-color: rgba(109, 4, 237, 0.929);
-            padding: 10px 0;
-            text-align: center;
-            box-shadow: 0px 2px 10px rgba(109, 4, 237, 0.7);
-            color: white;
-            font-size: 24px;
-            font-family: 'Courier New', Courier, monospace;
-            text-shadow: 2px 2px 3px rgba(0, 0, 0, 0.5);
-            animation: pulse 2s infinite;
-        }
-
-        @keyframes pulse {
-            0% {
-                text-shadow: 0 0 5px rgba(109, 4, 237, 0.5);
-            }
-            50% {
-                text-shadow: 0 0 20px rgba(109, 4, 237, 1);
-            }
-            100% {
-                text-shadow: 0 0 5px rgba(109, 4, 237, 0.5);
-            }
-        }
-
-        .common {
-            text-align: center;
-            font-size: 24px;
-            color: rgb(255, 255, 255);
-            width: 100%;
-            background-color: rgb(207, 190, 243);
-            transition: background-color 0.3s;
-        }
-
-        .common:hover {
-            background-color: rgb(178, 149, 223);
-        }
-
         @media (max-width: 600px) {
+            header {
+                font-size: 18px;
+                padding: 8px;
+            }
+
+            svg {
+                width: 50vw;
+            }
+
             .timer {
                 font-size: 20px;
-            }
-
-            .meet {
-                color: rgb(214, 94, 140);
-                font-family: 'Courier New', Courier, monospace;
-                font-size: 30px;
-                text-shadow: 2px 2px 3px rgba(109, 4, 237, 0.929);
-            }
-
-            .button {
-                padding: 8px 16px;
-                font-size: 0.9rem;
-            }
-
-            svg {
-                width: 70vw;
-            }
-
-            .for_heart {
-                padding: 15px;
-            }
-
-            #timerText {
-                font-size: 30px;
-            }
-        }
-
-        @media (min-width: 1024px) {
-            body {
-                height: 100vh;
-            }
-
-            svg {
-                width: 15vw;
-            }
-
-            .timer {
-                font-size: 32px;
-            }
-
-            .button {
-                font-size: 1.2rem;
-            }
-
-            .for_heart {
-                max-width: 600px;
-            }
-
-            #timerText {
-                font-size: 40px;
             }
         }
     </style>
@@ -209,7 +124,7 @@
         2 месяца вместе
     </header>
     <div class="body_container">
-        <div id="container" class="for_heart">
+        <div class="for_heart">
             <p id="hiText">Нажми на меня, Алёнка!</p>
             <svg id="heart-svg" viewBox="0 0 28 28">
                 <path
@@ -217,29 +132,21 @@
             </svg>
         </div>
 
-        <h1></h1>
         <div class="timer" id="countdown">
-            <p>До нашей встречи осталось</p>
+            <p>До нашей встречи осталось:</p>
             <p id="timerText" style="color:pink;font-size: 40px; text-shadow: 2px 2px 3px rgba(109, 4, 237, 0.929);">
             </p>
         </div>
-        <p style="font-size: 24px;color:white;">А пока...</p>
-        <div class="common">
-            Вспомним то,что нас объединяет
-        </div>
     </div>
+
     <script>
         const heartPath = document.querySelector('#heart-svg path');
-        const container = document.getElementById('container');
-        const countdown = document.getElementById('countdown');
-        const clickText = document.getElementById('hiText');
         const timer = document.getElementById('timerText');
         const nextMeetDate = new Date("2024-12-20T00:00:00").getTime();
 
         document.getElementById('hiText').addEventListener('click', function () {
             heartPath.classList.add('draw');
-            container.classList.toggle("for_heart_hide");
-            clickText.style.display = 'none';
+            this.style.display = 'none';
             timer.style.display = 'block';
             updateTimer();
             setInterval(updateTimer, 1000);
